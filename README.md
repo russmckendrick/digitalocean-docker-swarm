@@ -1,7 +1,7 @@
-Docker 1.12rc2
+DigitalOcean Docker 1.12rc2
 ====================
 
-This playbook launches three Ubuntu 16.04 droplets in [Digital Ocean](https://m.do.co/c/52ec4dc3647e), configures a firewall, installs Docker 1.12rc2 and then sets up a Swarm so you can test the new orchestration features.
+This [Ansible](https://www.ansible.com) Playbook launches three Ubuntu 16.04 droplets in [Digital Ocean](https://m.do.co/c/52ec4dc3647e), configures a firewall, installs Docker 1.12rc2 and then sets up a Swarm so you can test the new orchestration features.
 
 ## Setup
 
