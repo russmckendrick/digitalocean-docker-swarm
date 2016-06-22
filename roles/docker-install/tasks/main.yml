@@ -1,0 +1,12 @@
+---
+
+- name: Download the install script
+  get_url:
+    url: "{{ docker_url }}"
+    dest: "/tmp/install-docker.sh"
+    mode: "0755"
+
+- name: Run the install script
+  command: "/tmp/install-docker.sh"
+  args:
+    creates: /usr/bin/docker

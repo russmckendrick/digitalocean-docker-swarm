@@ -1,0 +1,38 @@
+---
+
+- name: Open port 22
+  ufw:
+    rule: "allow"
+    name: "OpenSSH"
+
+- name: Open port 80
+  ufw:
+    rule: "allow"
+    port: "80"
+    proto: "tcp"
+
+- name: Open port 8080
+  ufw:
+    rule: "allow"
+    port: "8080"
+    proto: "tcp"
+
+- name: Open port 443
+  ufw:
+    rule: "allow"
+    port: "443"
+    proto: "tcp"
+
+# Allow all our hosts to talk to each other
+- ufw: rule=allow src={{ item }}
+  with_items:
+    - "{{ groups['allhosts'] }}"
+
+# Deny everything else
+- ufw: state=enabled policy=deny
+
+- name: Update ufw to allow forwarding
+  lineinfile: dest=/etc/default/ufw regexp=DEFAULT_FORWARD_POLICY= line=DEFAULT_FORWARD_POLICY="ACCEPT"
+
+- name: Reload ufw
+  ufw: state=reloaded

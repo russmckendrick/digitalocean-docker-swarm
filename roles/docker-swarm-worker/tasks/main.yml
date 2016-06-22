@@ -1,0 +1,22 @@
+---
+
+- name: Set the IP address of the Swarm manager as a fact
+  set_fact:
+    managerip: "{{ item }}"
+  delegate_to: localhost
+  with_items:
+    - "{{ groups['manager'] }}"
+
+- stat: path=/tmp/swarm_worker
+  register: swarm_worker
+
+- name: Initalize the Swarm
+  shell: "docker swarm join {{ managerip }}:2377"
+  args:
+    creates: /tmp/swarm_worker
+
+- name: Create a file in /tmp so we don't try and initalize the Swarm again
+  file:
+    path: "/tmp/swarm_worker"
+    mode: "u=rw,g=r,o=r"
+    state: "{{ 'file' if swarm_worker.stat.exists else 'touch' }}"

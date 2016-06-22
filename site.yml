@@ -1,0 +1,48 @@
+---
+
+- name: "Provision three droplets in DigitalOcean"
+  hosts: localhost
+  connection: local
+  gather_facts: True
+
+  vars_files:
+    - group_vars/environment.yml
+    - group_vars/do.yml
+
+  roles:
+    - droplet
+
+- name: "Configure all three droplets"
+  hosts: allhosts
+  remote_user: root
+  gather_facts: False
+
+  vars_files:
+    - group_vars/environment.yml
+
+  roles:
+    - stack
+    - ufw
+    - docker-install
+
+- name: "Setup the Swarm Manager"
+  hosts: manager
+  remote_user: root
+  gather_facts: False
+
+  vars_files:
+    - group_vars/environment.yml
+
+  roles:
+    - docker-swarm-manager
+
+- name: "Setup the Swarm Workers"
+  hosts: workers
+  remote_user: root
+  gather_facts: False
+
+  vars_files:
+    - group_vars/environment.yml
+
+  roles:  
+    - docker-swarm-worker

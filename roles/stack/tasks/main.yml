@@ -1,0 +1,16 @@
+---
+
+- name: Install python 2.7
+  raw: apt-get install -qq python2.7
+
+- name: Install the packages
+  apt: name={{ item }} state=latest
+  with_items:
+    - git
+    - ufw
+
+- name: Start ufw
+  service:
+    name: "ufw"
+    state: "started"
+    enabled: "yes"
