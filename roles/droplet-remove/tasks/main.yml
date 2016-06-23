@@ -1,0 +1,24 @@
+---
+
+- name: Remove the manager
+  digital_ocean:
+    state: deleted
+    command: droplet
+    name: '{{ droplet_name }}-manager'
+    api_token: '{{ do_api_token }}'
+    size_id: '{{ size_id }}'
+    region_id: '{{ region_id }}'
+    image_id: '{{ image_id }}'
+    unique_name: 'yes'
+
+- name: Remove the workers
+  digital_ocean:
+    state: deleted
+    command: droplet
+    name: '{{ droplet_name }}-worker{{ item }}'
+    api_token: '{{ do_api_token }}'
+    size_id: '{{ size_id }}'
+    region_id: '{{ region_id }}'
+    image_id: '{{ image_id }}'
+    unique_name: 'yes'
+  with_sequence: count={{ no_of_workers }}

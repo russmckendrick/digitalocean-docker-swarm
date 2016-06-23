@@ -1,0 +1,13 @@
+---
+
+- name: "Provision three droplets in DigitalOcean"
+  hosts: localhost
+  connection: local
+  gather_facts: True
+
+  vars_files:
+    - group_vars/environment.yml
+    - group_vars/do.yml
+
+  roles:
+    - droplet-remove

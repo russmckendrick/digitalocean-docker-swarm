@@ -1,12 +1,11 @@
 ---
-# Det these parameters to control the name, region, keypair, and size of the droplet we are launching
-droplet_name: "docker-swarm"
-size_id: "1gb"
-region_id: "lon1"
-
-# Docker install URL
-docker_url: https://test.docker.com/
+# These parameters to control the name, region, and size and number of droplets we are launching
+droplet_name: "docker-swarm" # prefix for your droplets
+no_of_workers: 3 # Number of workers you want to launch
+size_id: "1gb" # Size of droplets
+region_id: "lon1" # Location of droplets
 
 # Don't change the varibles below unless you want experiment
 image_id: "ubuntu-16-04-x64"
 ssh_pub_key: "{{ lookup('env','SSHKEY') }}"
+docker_url: https://test.docker.com/

@@ -46,3 +46,15 @@
 
   roles:  
     - docker-swarm-worker
+
+- name: "Finish up"
+  hosts: localhost
+  connection: local
+  gather_facts: True
+
+  vars_files:
+    - group_vars/environment.yml
+    - group_vars/do.yml
+
+  roles:
+    - finish
