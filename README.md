@@ -8,7 +8,7 @@ This playbook launches a number of Ubuntu 16.04 droplets in [Digital Ocean][1], 
 You will also need to ensure you have the following python module installed on your localhost;
 
 ```
-sudo pip install 'dopy\>=0.3.5,\<=0.3.5'
+sudo pip install 'dopy>=0.3.5,<=0.3.5'
 ```
 
 ## Varibles
@@ -16,8 +16,8 @@ sudo pip install 'dopy\>=0.3.5,\<=0.3.5'
 Create a file called `do.yml` in the `group_vars` folder, this file should contain your DigitalOcean API token and also the name of the ssh key you want to use.
 
 ```
-echo 'do\_api\_token: "sdnjkjdfgkjb345kjdgljknqwetkjwhgoih314rjkwergoiyu34rjkherglkhrg0"' \> group\_vars/do.yml
-echo 'ssh\_key\_name: "Your Key Name"' \> group\_vars/do.yml
+echo 'do_api_token: "sdnjkjdfgkjb345kjdgljknqwetkjwhgoih314rjkwergoiyu34rjkherglkhrg0"' > group_vars/do.yml
+echo 'ssh_key_name: "Your Key Name"' > group_vars/do.yml
 ```
 
 You can change the number of workers being launched in the `environment.yml` which is also in the `group_vars` folder.
