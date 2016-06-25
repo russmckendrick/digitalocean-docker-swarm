@@ -1,6 +1,6 @@
 ---
 
-- name: "Provision three droplets in DigitalOcean"
+- name: "Provision the droplets in DigitalOcean"
   hosts: localhost
   connection: local
   gather_facts: True
@@ -12,7 +12,7 @@
   roles:
     - droplet
 
-- name: "Configure all three droplets"
+- name: "Configure all the droplets"
   hosts: allhosts
   remote_user: root
   gather_facts: False

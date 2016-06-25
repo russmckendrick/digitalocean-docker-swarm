@@ -20,14 +20,3 @@
     path: "/tmp/swarm_worker"
     mode: "u=rw,g=r,o=r"
     state: "{{ 'file' if swarm_worker.stat.exists else 'touch' }}"
-
-- name: Set the IP address of the Swarm manager as a fact
-  set_fact:
-    managerip: "{{ item }}"
-  delegate_to: localhost
-  with_items:
-    - "{{ groups['manager'] }}"
-
-- debug:
-    msg: "Complete, you can connect to your manager using ssh root@{{ managerip }}"
-  delegate_to: localhost
