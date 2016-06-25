@@ -23,6 +23,12 @@
     port: "443"
     proto: "tcp"
 
+- name: Open ports 30000 > 35000
+  ufw:
+    rule: "allow"
+    port: "30000:35000"
+    proto: "tcp"
+
 # Allow all our hosts to talk to each other
 - ufw: rule=allow src={{ item }}
   with_items:
